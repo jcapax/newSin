@@ -3,9 +3,11 @@ object modulo: Tmodulo
   Height = 467
   Width = 764
   object CNX: TADOConnection
-    Connected = True
-    ConnectionString = 'Provider=MSDASQL.1;Persist Security Info=False;Data Source=fasin'
+    ConnectionString = 
+      'Provider=MSDASQL.1;Persist Security Info=False;Data Source=fasin' +
+      '_'
     LoginPrompt = False
+    Provider = 'MSDASQL.1'
     Left = 16
     Top = 24
   end

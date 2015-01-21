@@ -321,7 +321,7 @@ procedure TfVenta.detalleVenta(_idVenta: Integer);
 var
   _comun: TAtisbador;
   _idProducto: Byte;
-  _cantidad: SmallInt;
+  _cantidad: Real;
   _precioUnit, _iceUnit, _precioTot, _iceTot, _iceAlic: Currency;
 begin
   _importeTotal := 0;
@@ -442,7 +442,7 @@ begin
     _fechaFactura, _nroFactura, _nroAutorizacion, _estado, _nit, _razonSocial,
     _importeTotal, _importeIce, _importeExportaciones, _importeVentastasaCero,
     _importeSubtotal, _importeRebajas, _importeBaseDebitoFiscal, _debitoFiscal,
-    _codigoControl, _idVenta, qDosificacionSucursalfechaLimiteEmision.Value);
+    _codigoControl, _idVenta, qDosificacionSucursalfechaLimiteEmision.Value, cSucursal.KeyValue);
 
   eCodigoControl.Text := _codigoControl;
 

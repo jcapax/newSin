@@ -14,7 +14,7 @@ type
       function validarUsuario(_login, _contrasena: string): Boolean;
       function nroVenta(_idSucursal: Integer): Integer;
       procedure registrarVenta(_idVenta, _idSucursal, _idCaja: Integer; _usuario: string);
-      procedure registrarDetalleVenta(_idVenta, _idProducto, _cantidad: integer; _precioUnitario, _iceUnitario, _precioTotal, _iceTotal, _iceAlicuota: Currency);
+      procedure registrarDetalleVenta(_idVenta, _idProducto, _cantidad: real; _precioUnitario, _iceUnitario, _precioTotal, _iceTotal, _iceAlicuota: Currency);
       procedure registarFactura(_idSucursal: Integer; _especificacion: Byte; _correlativoSucursal: Integer;
                                 _fechaFactura: TDate; _nroFactura, _nroAutorizacion: Int64; _estado: string;
                                 _nit: Int64; _razonSocial: string;
@@ -23,7 +23,8 @@ type
                                 _importeBaseDebitoFiscal, _debitoFiscal: Currency;
                                 _codigoControl: string;
                                 _idVenta: Integer;
-                                _fechaLimiteEmision: TDate);
+                                _fechaLimiteEmision: TDate;
+                                _idDosificacion: SmallInt);
   end;
 
 implementation
@@ -38,15 +39,16 @@ procedure TAtisbador.registarFactura(_idSucursal: Integer; _especificacion: Byte
                                 _importeBaseDebitoFiscal, _debitoFiscal: Currency;
                                 _codigoControl: string;
                                 _idVenta: Integer;
-                                _fechaLimiteEmision: TDate);
+                                _fechaLimiteEmision: TDate;
+                                _idDosificacion: SmallInt);
 var qConsulta: TADOQuery;
   _sqlIns_a, _sqlVal_a, _sqlIns_b, _sqlVal_b, _sql: string;
 begin
   _sqlIns_a := 'INSERT INTO factura(idSucursal, especificacion, correlativoSucursal, fechaFactura, nroFactura, nroAutorizacion, estado, nit, razonSocial, ';
-  _sqlIns_b := 'importeTotal, importeIce, importeExportaciones, importeVentasTasaCero, importeSubtotal, importeRebajas, importeBaseDebitoFiscal, debitoFiscal, codigoControl, idVenta, fechaLimiteEmision)';
+  _sqlIns_b := 'importeTotal, importeIce, importeExportaciones, importeVentasTasaCero, importeSubtotal, importeRebajas, importeBaseDebitoFiscal, debitoFiscal, codigoControl, idVenta, fechaLimiteEmision, idDosificacion)';
 
   _sqlVal_a := 'VALUES(:idSucursal, :especificacion, :correlativoSucursal, :fechaFactura, :nroFactura, :nroAutorizacion, :estado, :nit, :razonSocial, :importeTotal, ';
-  _sqlVal_b := ':importeIce, :importeExportaciones, :importeVentasTasaCero, :importeSubtotal, :importeRebajas, :importeBaseDebitoFiscal, :debitoFiscal, :codigoControl, :idVenta, :fechaLimiteEmision)';
+  _sqlVal_b := ':importeIce, :importeExportaciones, :importeVentasTasaCero, :importeSubtotal, :importeRebajas, :importeBaseDebitoFiscal, :debitoFiscal, :codigoControl, :idVenta, :fechaLimiteEmision: idDosificacion)';
 
   _sql := _sqlIns_a+_sqlIns_b + ' ' + _sqlVal_a+_sqlVal_b;
   qConsulta := TADOQuery.Create(nil);
@@ -75,6 +77,7 @@ begin
   qConsulta.Parameters.ParamByName('idVenta').Value                 := _idVenta;
   qConsulta.Parameters.ParamByName('fechaLimiteEmision').DataType   := ftDate;
   qConsulta.Parameters.ParamByName('fechaLimiteEmision').Value      := _fechaLimiteEmision;
+  qConsulta.Parameters.ParamByName('idDosificacion').Value          := _idDosificacion;
 
   qConsulta.ExecSQL;
   qConsulta.Free;
@@ -96,7 +99,7 @@ begin
   qConsulta.Free;
 end;
 
-procedure TAtisbador.registrarDetalleVenta(_idVenta, _idProducto, _cantidad: integer; _precioUnitario, _iceUnitario, _precioTotal, _iceTotal, _iceAlicuota: Currency);
+procedure TAtisbador.registrarDetalleVenta(_idVenta, _idProducto, _cantidad: real; _precioUnitario, _iceUnitario, _precioTotal, _iceTotal, _iceAlicuota: Currency);
 var qConsulta: TAdoQuery;
   _sql: string;
 begin
