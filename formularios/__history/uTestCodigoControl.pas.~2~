@@ -1,0 +1,64 @@
+unit uTestCodigoControl;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TfTestCodigoControl = class(TForm)
+    function codControl(_nit: string; _importeTotal: Currency): string;
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fTestCodigoControl: TfTestCodigoControl;
+
+implementation
+
+{$R *.dfm}
+
+
+function TfTestCodigoControl.codControl(_nit: string; _importeTotal: Currency): string;
+var
+  _codControl, _llaveDosif, _codPuro, _fechaFactura: string;
+
+  _nroFactura: Integer;
+  codCont: TCodigoControl;
+
+  _dia, _mes, _anno: string;
+begin
+
+  _nroAutorizacion := StrToInt64(qDosificacionSucursalnroAutorizacion.Value);
+
+  _nroFactura := nroFactura(_nroAutorizacion,
+    qDosificacionSucursalnroInicioFactura.Value, cSucursal.KeyValue);
+
+  _dia := inttostr(DayOf(date));
+  if Length(_dia) = 1 then
+    _dia := '0' + _dia;
+
+  _mes := inttostr(MonthOf(date));
+  if Length(_mes) = 1 then
+    _mes := '0' + _mes;
+
+  _fechaFactura := inttostr(YearOf(date)) + _mes + _dia;
+
+  _llaveDosif := qDosificacionSucursalllaveDosificacion.Value;
+
+  codCont := TCodigoControl.Create(inttostr(_nroAutorizacion),
+    inttostr(_nroFactura), _nit, _fechaFactura,
+    inttostr(modulo.aCero(_importeTotal)), _llaveDosif);
+
+  _codPuro := codCont.f_codigoControlPuro();
+
+  result := codCont.f_codigoControlImpresion(_codPuro);
+end;
+
+
+end.

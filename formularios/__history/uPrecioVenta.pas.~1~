@@ -1,0 +1,24 @@
+unit uPrecioVenta;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TfPrecioProducto = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fPrecioProducto: TfPrecioProducto;
+
+implementation
+
+{$R *.dfm}
+
+end.

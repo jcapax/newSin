@@ -1,0 +1,116 @@
+unit uProductos;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters,
+  cxStyles, dxSkinsCore, dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee,
+  dxSkinDarkRoom, dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans,
+  dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
+  dxSkinMcSkin, dxSkinMoneyTwins, dxSkinOffice2007Black, dxSkinOffice2007Blue,
+  dxSkinOffice2007Green, dxSkinOffice2007Pink, dxSkinOffice2007Silver,
+  dxSkinOffice2010Black, dxSkinOffice2010Blue, dxSkinOffice2010Silver,
+  dxSkinPumpkin, dxSkinSeven, dxSkinSharp, dxSkinSilver, dxSkinSpringTime,
+  dxSkinStardust, dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinXmas2008Blue, dxSkinscxPCPainter, cxCustomData, cxFilter, cxData,
+  cxDataStorage, cxEdit, DB, cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxImage,
+  cxButtonEdit, ExtDlgs, ExtCtrls, DBCtrls;
+
+type
+  TfProductos = class(TForm)
+    OpenPictureDialog1: TOpenPictureDialog;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    cxGrid1DBTableView1nombreProducto: TcxGridDBColumn;
+    cxGrid1DBTableView1capacidad: TcxGridDBColumn;
+    cxGrid1DBTableView1ICE: TcxGridDBColumn;
+    cxGrid1DBTableView1simbolo: TcxGridDBColumn;
+    DBNavigator1: TDBNavigator;
+    dsProducto: TDataSource;
+    procedure cxGrid1DBTableView1Column1PropertiesButtonClick(Sender: TObject;AButtonIndex: Integer);
+    function CambiarTamano(Bitmap: TBitmap; NewWidth, NewHeight: Integer; NearestFit: Boolean): Boolean;
+    procedure FormShow(Sender: TObject);
+
+  private
+    { Private declarations }
+    procedure CargarImagen;
+  public
+    { Public declarations }
+  end;
+
+var
+  fProductos: TfProductos;
+
+implementation
+
+uses uModulo;
+
+{$R *.dfm}
+
+function TfProductos.CambiarTamano(Bitmap: TBitmap; NewWidth, NewHeight: Integer; NearestFit: Boolean): Boolean;
+//var
+//  TempBitmap: TBitmap;
+begin
+//   // Create a temporary bitmap of the needed size
+//  TempBitmap := TBitmap.Create;
+//  TempBitmap.Width := NewWidth;
+//  TempBitmap.Height := NewHeight;
+//  TempBitmap.PixelFormat := Bitmap.PixelFormat;
+//
+//   // Now do the rescaling
+//  Result :=  Rescale(Bitmap, TempBitmap, NearestFit);
+//
+//   // Assign the new bitmap if all went ok
+//  if Result then
+//    Bitmap.Assign(TempBitmap);
+//
+//  // And free up the temporary bitmap object
+//  TempBitmap.Free;
+end; // function resize
+
+
+procedure TfProductos.CargarImagen;
+//var Imagen:TBitmap;
+//    Strem:TStream;
+begin
+// with Modulo do
+//   Begin
+//     qProductos.Edit;
+////    if (qProductos.State=dsEdit) or  (qProductos.State=dsInsert) then
+//       if OpenPictureDialog1.Execute then
+//          Begin
+//            Imagen:=TBitmap.Create();
+//            Imagen.LoadFromFile(OpenPictureDialog1.FileName);
+//            CambiarTamano(Imagen,80,80 div 2,true);
+//            Strem:=TMemoryStream.Create;
+//            Imagen.SaveToStream(Strem);
+//            Strem.Position:=0;
+//            qProductosIMAGEN.LoadFromStream(Strem);
+//            Imagen.Free;
+//            Strem.Free;
+//            qProductos.Post;
+//          End
+//       else
+//        qProductos.Cancel;
+//   End;
+end;
+
+
+procedure TfProductos.cxGrid1DBTableView1Column1PropertiesButtonClick(
+  Sender: TObject; AButtonIndex: Integer);
+begin
+  CargarImagen;
+end;
+
+procedure TfProductos.FormShow(Sender: TObject);
+begin
+//  Modulo.qProducto.Close;
+//  Modulo.qProducto.Open;
+//
+//  Modulo.qProducto.Insert;
+end;
+
+end.

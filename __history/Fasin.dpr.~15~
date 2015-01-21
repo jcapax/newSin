@@ -1,0 +1,22 @@
+program Fasin;
+
+uses
+  Forms,
+  uPrincipal in 'formularios\uPrincipal.pas' {Form1},
+  uModulo in 'modulo\uModulo.pas' {modulo: TDataModule},
+  uComun in 'unidades\uComun.pas',
+  uSucursal in 'formularios\uSucursal.pas' {fSucursal},
+  uProductos in 'formularios\uProductos.pas' {fProductos},
+  uPrecioVenta in 'formularios\uPrecioVenta.pas' {fPrecioProducto},
+  uVenta in 'formularios\uVenta.pas' {fVenta};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(Tmodulo, modulo);
+  Application.CreateForm(TfVenta, fVenta);
+  Application.Run;
+end.

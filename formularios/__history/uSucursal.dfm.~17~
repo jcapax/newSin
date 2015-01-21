@@ -1,0 +1,62 @@
+object fSucursal: TfSucursal
+  Left = 0
+  Top = 0
+  Caption = 'Sucursal'
+  ClientHeight = 515
+  ClientWidth = 700
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 16
+  object cxGrid1: TcxGrid
+    Left = 0
+    Top = 0
+    Width = 700
+    Height = 515
+    Align = alClient
+    TabOrder = 0
+    ExplicitLeft = 104
+    ExplicitTop = 144
+    ExplicitWidth = 250
+    ExplicitHeight = 200
+    object cxGrid1DBTableView1: TcxGridDBTableView
+      NavigatorButtons.ConfirmDelete = False
+      DataController.DataSource = dsSucursal
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.SummaryGroups = <>
+      object cxGrid1DBTableView1nombreSucursal: TcxGridDBColumn
+        DataBinding.FieldName = 'nombreSucursal'
+        Width = 206
+      end
+      object cxGrid1DBTableView1direccion: TcxGridDBColumn
+        DataBinding.FieldName = 'direccion'
+        Width = 266
+      end
+      object cxGrid1DBTableView1tipoProductos: TcxGridDBColumn
+        DataBinding.FieldName = 'tipoProductos'
+        Width = 153
+      end
+      object cxGrid1DBTableView1estado: TcxGridDBColumn
+        DataBinding.FieldName = 'estado'
+        PropertiesClassName = 'TcxCheckBoxProperties'
+        Properties.ValueChecked = 1
+        Properties.ValueUnchecked = 0
+      end
+    end
+    object cxGrid1Level1: TcxGridLevel
+      GridView = cxGrid1DBTableView1
+    end
+  end
+  object dsSucursal: TDataSource
+    DataSet = modulo.qSucursal
+    Left = 280
+    Top = 112
+  end
+end

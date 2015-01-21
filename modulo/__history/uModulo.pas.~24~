@@ -1,0 +1,59 @@
+unit uModulo;
+
+interface
+
+uses
+  SysUtils, Classes, DB, DBTables, ADODB;
+
+type
+  Tmodulo = class(TDataModule)
+    CNX: TADOConnection;
+    qSucursal: TADOQuery;
+    qSucursalid: TAutoIncField;
+    qSucursalnombreSucursal: TStringField;
+    qSucursaldireccion: TStringField;
+    qSucursaltipoProductos: TMemoField;
+    qSucursalestado: TWordField;
+    qProducto: TADOQuery;
+    qProductoid: TAutoIncField;
+    qProductonombreProducto: TStringField;
+    qProductoidUnidadMedida: TIntegerField;
+    qProductocapacidad: TFloatField;
+    qProductoICE: TFloatField;
+    qUnidadMedida: TADOQuery;
+    qUnidadMedidaid: TAutoIncField;
+    qUnidadMedidanombreUnidadMedida: TStringField;
+    qUnidadMedidasimbolo: TStringField;
+    qProductounidad: TStringField;
+    qPrecioProducto: TADOQuery;
+    qPrecioProductoid: TAutoIncField;
+    qPrecioProductoidProducto: TIntegerField;
+    qPrecioProductoidSucursal: TIntegerField;
+    qPrecioProductoprecioUnitario: TBCDField;
+    qPrecioProductoestado: TWordField;
+    qPrecioProductonombreSucursal: TStringField;
+    qPrecioProductonombreProducto: TStringField;
+    qDosificacion: TADOQuery;
+    qDosificacionid: TAutoIncField;
+    qDosificacionllaveDosificacion: TStringField;
+    qDosificacionfecha: TDateField;
+    qDosificacionidSucursal: TIntegerField;
+    qDosificacionnroAutorizacion: TStringField;
+    qDosificacionnroInicioFactura: TIntegerField;
+    qDosificacionfechaLimiteEmision: TDateField;
+    qDosificacionnombresucursal: TStringField;
+    qDosificacionestado: TWordField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  modulo: Tmodulo;
+
+implementation
+
+{$R *.dfm}
+
+end.

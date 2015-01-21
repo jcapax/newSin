@@ -1,0 +1,25 @@
+unit uSucursal;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB;
+
+type
+  TfSucursal = class(TForm)
+    dsSucursal: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fSucursal: TfSucursal;
+
+implementation
+
+{$R *.dfm}
+
+end.

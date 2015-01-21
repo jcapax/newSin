@@ -1,0 +1,45 @@
+unit uSucursal;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, Grids, DBGrids, ExtCtrls, DBCtrls, StdCtrls, Mask, cxGraphics,
+  cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit,
+  dxSkinsCore, dxSkinsDefaultPainters, cxCheckBox;
+
+type
+  TfSucursal = class(TForm)
+    dsSucursal: TDataSource;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    Label3: TLabel;
+    DBMemo1: TDBMemo;
+    DBNavigator1: TDBNavigator;
+    DBGrid1: TDBGrid;
+    cxCheckBox1: TcxCheckBox;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fSucursal: TfSucursal;
+
+implementation
+
+uses uModulo;
+
+{$R *.dfm}
+
+procedure TfSucursal.FormShow(Sender: TObject);
+begin
+  dmPrincipal.tSucursal.Close;
+  dmPrincipal.tSucursal.Open;
+end;
+
+end.

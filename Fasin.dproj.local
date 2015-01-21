@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2014/11/28 09:47:21.800.pas,C:\Users\jcarlos.porcel.SIDS\Documents\RAD Studio\Projects\Unit1.pas=D:\propios\Desarrollo\newSin\Aplicacion\unidades\uPrincipal.pas</Transaction>
+    <Transaction>2014/11/28 09:47:21.844.dfm,C:\Users\jcarlos.porcel.SIDS\Documents\RAD Studio\Projects\Unit1.dfm=D:\propios\Desarrollo\newSin\Aplicacion\unidades\uPrincipal.dfm</Transaction>
+    <Transaction>2014/11/28 09:53:49.046.dproj,C:\Users\jcarlos.porcel.SIDS\Documents\RAD Studio\Projects\Project1.dproj=D:\propios\Desarrollo\newSin\Aplicacion\Fasin.dproj</Transaction>
+    <Transaction>2014/11/28 09:54:59.148.pas,D:\propios\Desarrollo\newSin\Aplicacion\Unit1.pas=D:\propios\Desarrollo\newSin\Aplicacion\modulo\uModulo.pas</Transaction>
+    <Transaction>2014/11/28 09:54:59.148.dfm,D:\propios\Desarrollo\newSin\Aplicacion\Unit1.dfm=D:\propios\Desarrollo\newSin\Aplicacion\modulo\uModulo.dfm</Transaction>
+    <Transaction>2014/11/28 09:55:45.739.pas,D:\propios\Desarrollo\newSin\Aplicacion\unidades\uPrincipal.pas=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uPrincipal.pas</Transaction>
+    <Transaction>2014/11/28 09:55:45.739.dfm,D:\propios\Desarrollo\newSin\Aplicacion\unidades\uPrincipal.dfm=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uPrincipal.dfm</Transaction>
+    <Transaction>2014/11/28 10:20:54.752.pas,D:\propios\Desarrollo\newSin\Aplicacion\Unit2.pas=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uSucursal.pas</Transaction>
+    <Transaction>2014/11/28 10:20:54.752.dfm,D:\propios\Desarrollo\newSin\Aplicacion\Unit2.dfm=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uSucursal.dfm</Transaction>
+    <Transaction>2014/12/01 15:29:11.579.pas,D:\propios\Desarrollo\newSin\Aplicacion\Unit2.pas=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uPrecioVenta.pas</Transaction>
+    <Transaction>2014/12/01 15:29:11.609.dfm,D:\propios\Desarrollo\newSin\Aplicacion\Unit2.dfm=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uPrecioVenta.dfm</Transaction>
+    <Transaction>2014/12/01 16:29:56.340.pas,D:\propios\Desarrollo\newSin\Aplicacion\Unit2.pas=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uVenta.pas</Transaction>
+    <Transaction>2014/12/01 16:29:56.340.dfm,D:\propios\Desarrollo\newSin\Aplicacion\Unit2.dfm=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uVenta.dfm</Transaction>
+    <Transaction>2014/12/02 09:59:48.968.pas,D:\propios\Desarrollo\newSin\Aplicacion\Unit2.pas=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uDosificacion.pas</Transaction>
+    <Transaction>2014/12/02 09:59:48.973.dfm,D:\propios\Desarrollo\newSin\Aplicacion\Unit2.dfm=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uDosificacion.dfm</Transaction>
+    <Transaction>2014/12/11 14:59:48.105.pas,D:\propios\Desarrollo\SVentasComidasRapidasCombos\Formularios\uProducto.pas=</Transaction>
+    <Transaction>2014/12/11 14:59:48.125.dfm,D:\propios\Desarrollo\SVentasComidasRapidasCombos\Formularios\uProducto.dfm=</Transaction>
+    <Transaction>2014/12/31 10:11:55.431.pas,D:\propios\Desarrollo\newSin\Aplicacion\Unit2.pas=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uTestCodigoControl.pas</Transaction>
+    <Transaction>2014/12/31 10:11:55.467.dfm,D:\propios\Desarrollo\newSin\Aplicacion\Unit2.dfm=D:\propios\Desarrollo\newSin\Aplicacion\formularios\uTestCodigoControl.dfm</Transaction>
+  </Transactions>
+</BorlandProject>
