@@ -21,7 +21,6 @@ object fDosificacion: TfDosificacion
     Height = 436
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 8
     object cxGrid1DBTableView1: TcxGridDBTableView
       NavigatorButtons.ConfirmDelete = False
       DataController.DataSource = dsDosificacion
@@ -33,6 +32,7 @@ object fDosificacion: TfDosificacion
       OptionsBehavior.GoToNextCellOnEnter = True
       OptionsData.Appending = True
       object cxGrid1DBTableView1llaveDosificacion: TcxGridDBColumn
+        Caption = 'Llave Dosificacion'
         DataBinding.FieldName = 'llaveDosificacion'
         Width = 250
       end
@@ -41,6 +41,7 @@ object fDosificacion: TfDosificacion
         PropertiesClassName = 'TcxDateEditProperties'
       end
       object cxGrid1DBTableView1nombresucursal: TcxGridDBColumn
+        Caption = 'Nombre Sucursal'
         DataBinding.FieldName = 'nombresucursal'
         Width = 160
       end
@@ -49,10 +50,17 @@ object fDosificacion: TfDosificacion
         Width = 103
       end
       object cxGrid1DBTableView1nroInicioFactura: TcxGridDBColumn
+        Caption = 'nro Inicio Factura'
         DataBinding.FieldName = 'nroInicioFactura'
       end
       object cxGrid1DBTableView1fechaLimiteEmision: TcxGridDBColumn
+        Caption = 'fecha Limite Emision'
         DataBinding.FieldName = 'fechaLimiteEmision'
+      end
+      object cxGrid1DBTableView1pieFactura: TcxGridDBColumn
+        Caption = 'Pie Factura'
+        DataBinding.FieldName = 'pieFactura'
+        Width = 369
       end
       object cxGrid1DBTableView1estado: TcxGridDBColumn
         DataBinding.FieldName = 'estado'

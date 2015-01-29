@@ -23,6 +23,7 @@ type
     cxGrid1DBTableView1fechaLimiteEmision: TcxGridDBColumn;
     cxGrid1DBTableView1nombresucursal: TcxGridDBColumn;
     cxGrid1DBTableView1estado: TcxGridDBColumn;
+    cxGrid1DBTableView1pieFactura: TcxGridDBColumn;
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }

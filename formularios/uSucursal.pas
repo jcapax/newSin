@@ -21,6 +21,8 @@ type
     cxGrid1DBTableView1direccion: TcxGridDBColumn;
     cxGrid1DBTableView1tipoProductos: TcxGridDBColumn;
     cxGrid1DBTableView1estado: TcxGridDBColumn;
+    cxGrid1DBTableView1lugarSucursal: TcxGridDBColumn;
+    cxGrid1DBTableView1actividadEconomica: TcxGridDBColumn;
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }

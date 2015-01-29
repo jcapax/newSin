@@ -76,6 +76,7 @@ object fVenta: TfVenta
     Width = 729
     Height = 237
     TabOrder = 3
+    OnEnter = cxGrid1Enter
     object cxGrid1DBTableView1: TcxGridDBTableView
       NavigatorButtons.ConfirmDelete = False
       NavigatorButtons.First.Visible = True

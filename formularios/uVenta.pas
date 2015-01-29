@@ -114,6 +114,8 @@ type
     procedure imprimirFactura(_idVenta: Integer);
     procedure guardarQR(_idVenta: Integer);
     procedure eNitKeyPress(Sender: TObject; var Key: Char);
+    procedure cxGrid1Enter(Sender: TObject);
+    procedure validarRegistros;
   private
     { Private declarations }
     _idProducto: Integer;
@@ -139,6 +141,30 @@ implementation
 
 uses uModulo, uComun, uCodigoControl, DelphiZXIngQRCode;
 {$R *.dfm}
+
+procedure TfVenta.validarRegistros;
+begin
+  if eNit.Text = '' then
+   begin
+     Dialogs.MessageDlg('Registrar NIT o CI del comprador!!!', mtWarning, [mbOk], 0, mbOk);
+     eNit.SetFocus;
+     Abort;
+   end;
+
+  if eRazonSocial.Text = '' then
+   begin
+     Dialogs.MessageDlg('Registrar Razon Social del comprador!!!', mtWarning, [mbOk], 0, mbOk);
+     eNit.SetFocus;
+     Abort;
+   end;
+
+
+  if cdsDetalleVenta.RecordCount = 0 then
+   begin
+     Dialogs.MessageDlg('No esisten registro de productos!!!', mtWarning, [mbOk], 0, mbOk);
+     Abort;
+   end;
+end;
 
 procedure TfVenta.guardarQR(_idVenta: Integer);
 Var
@@ -398,6 +424,8 @@ var
 
   _cadenaQr, _cadenaQr1, _cadenaQr2, _cadenaQr3: string;
 begin
+  validarRegistros();
+
   bRegistrarVenta.Enabled := false;
 
   _nit := 0;
@@ -460,6 +488,11 @@ begin
   imprimirFactura(_idVenta);
 
   bRegistrarVenta.Enabled := true;
+
+  eNit.Text := '';
+  eRazonSocial.Text := '';
+  cdsDetalleVenta.EmptyDataSet;
+  eNit.SetFocus;
 end;
 
 procedure TfVenta.cdsDetalleVentaBeforePost(DataSet: TDataSet);
@@ -500,6 +533,14 @@ begin
 
   _nroAutorizacion  := StrToInt64(qDosificacionSucursalnroAutorizacion.Value);
   _nroInicioFactura := qDosificacionSucursalnroInicioFactura.Value;
+end;
+
+procedure TfVenta.cxGrid1Enter(Sender: TObject);
+begin
+  if cdsDetalleVenta.RecordCount = 0 then
+    cdsDetalleVenta.Insert
+  else
+      cdsDetalleVenta.First;
 end;
 
 procedure TfVenta.FormCreate(Sender: TObject);

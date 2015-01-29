@@ -48,7 +48,7 @@ begin
   _sqlIns_b := 'importeTotal, importeIce, importeExportaciones, importeVentasTasaCero, importeSubtotal, importeRebajas, importeBaseDebitoFiscal, debitoFiscal, codigoControl, idVenta, fechaLimiteEmision, idDosificacion)';
 
   _sqlVal_a := 'VALUES(:idSucursal, :especificacion, :correlativoSucursal, :fechaFactura, :nroFactura, :nroAutorizacion, :estado, :nit, :razonSocial, :importeTotal, ';
-  _sqlVal_b := ':importeIce, :importeExportaciones, :importeVentasTasaCero, :importeSubtotal, :importeRebajas, :importeBaseDebitoFiscal, :debitoFiscal, :codigoControl, :idVenta, :fechaLimiteEmision: idDosificacion)';
+  _sqlVal_b := ':importeIce, :importeExportaciones, :importeVentasTasaCero, :importeSubtotal, :importeRebajas, :importeBaseDebitoFiscal, :debitoFiscal, :codigoControl, :idVenta, :fechaLimiteEmision, :idDosificacion)';
 
   _sql := _sqlIns_a+_sqlIns_b + ' ' + _sqlVal_a+_sqlVal_b;
   qConsulta := TADOQuery.Create(nil);
@@ -135,7 +135,8 @@ var qConsulta: TAdoQuery;
   _cont: Integer;
 begin
   _cont := 0;
-  _sql := 'SELECT id FROM venta WHERE idSucursal = '+ IntToStr(_idSucursal) +' ORDER BY id DESC';
+//  _sql := 'SELECT id FROM venta WHERE idSucursal = '+ IntToStr(_idSucursal) +' ORDER BY id DESC';
+  _sql := 'SELECT id FROM venta ORDER BY id DESC';
   qConsulta := TAdoQuery.Create(nil);
   qConsulta.Connection := Modulo.CNX;
   qConsulta.SQL.Add(_sql);

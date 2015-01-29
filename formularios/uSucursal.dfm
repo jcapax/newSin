@@ -3,7 +3,7 @@ object fSucursal: TfSucursal
   Top = 0
   Caption = 'Sucursal'
   ClientHeight = 509
-  ClientWidth = 741
+  ClientWidth = 843
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,12 +17,11 @@ object fSucursal: TfSucursal
   object cxGrid1: TcxGrid
     Left = 0
     Top = 0
-    Width = 741
+    Width = 843
     Height = 509
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 700
-    ExplicitHeight = 515
+    ExplicitWidth = 741
     object cxGrid1DBTableView1: TcxGridDBTableView
       NavigatorButtons.ConfirmDelete = False
       DataController.DataSource = dsSucursal
@@ -34,16 +33,29 @@ object fSucursal: TfSucursal
       OptionsBehavior.GoToNextCellOnEnter = True
       OptionsData.Appending = True
       object cxGrid1DBTableView1nombreSucursal: TcxGridDBColumn
+        Caption = 'Nombre Sucursal'
         DataBinding.FieldName = 'nombreSucursal'
         Width = 206
       end
       object cxGrid1DBTableView1direccion: TcxGridDBColumn
+        Caption = 'Direcci'#243'n'
         DataBinding.FieldName = 'direccion'
         Width = 266
       end
       object cxGrid1DBTableView1tipoProductos: TcxGridDBColumn
+        Caption = 'Tipo Productos'
         DataBinding.FieldName = 'tipoProductos'
         Width = 153
+      end
+      object cxGrid1DBTableView1lugarSucursal: TcxGridDBColumn
+        Caption = 'Lugar Sucursal'
+        DataBinding.FieldName = 'lugarSucursal'
+        Width = 251
+      end
+      object cxGrid1DBTableView1actividadEconomica: TcxGridDBColumn
+        Caption = 'Actividad Econ'#243'mica'
+        DataBinding.FieldName = 'actividadEconomica'
+        Width = 304
       end
       object cxGrid1DBTableView1estado: TcxGridDBColumn
         DataBinding.FieldName = 'estado'

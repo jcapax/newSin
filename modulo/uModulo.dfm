@@ -3,11 +3,12 @@ object modulo: Tmodulo
   Height = 467
   Width = 764
   object CNX: TADOConnection
+    Connected = True
     ConnectionString = 
       'Provider=MSDASQL.1;Persist Security Info=False;Data Source=fasin' +
       '_'
     LoginPrompt = False
-    Provider = 'MSDASQL.1'
+    AfterConnect = CNXAfterConnect
     Left = 16
     Top = 24
   end
@@ -37,6 +38,14 @@ object modulo: Tmodulo
     end
     object qSucursalestado: TWordField
       FieldName = 'estado'
+    end
+    object qSucursallugarSucursal: TStringField
+      FieldName = 'lugarSucursal'
+      Size = 45
+    end
+    object qSucursalactividadEconomica: TStringField
+      FieldName = 'actividadEconomica'
+      Size = 145
     end
   end
   object qProducto: TADOQuery
@@ -185,18 +194,23 @@ object modulo: Tmodulo
     object qDosificacionestado: TWordField
       FieldName = 'estado'
     end
+    object qDosificacionpieFactura: TStringField
+      FieldName = 'pieFactura'
+      Size = 300
+    end
   end
   object raveFasin: TRvProject
     Engine = RvSystem1
-    ProjectFile = 'D:\propios\Desarrollo\newSin\Aplicacion\reportes\rFasin.rav'
     Left = 128
     Top = 200
   end
   object RvSystem1: TRvSystem
     TitleSetup = 'Output Options'
     TitleStatus = 'Report Status'
-    TitlePreview = 'Report Preview'
+    TitlePreview = 'Impuestos'
+    SystemSetups = [ssAllowSetup, ssAllowCopies, ssAllowCollate, ssAllowDuplex, ssAllowDestPreview, ssAllowDestPrinter, ssAllowDestFile]
     SystemOptions = []
+    DefaultDest = rdPrinter
     SystemFiler.StatusFormat = 'Generating page %p'
     SystemPreview.ZoomFactor = 100.000000000000000000
     SystemPrinter.ScaleX = 100.000000000000000000
@@ -357,6 +371,26 @@ object modulo: Tmodulo
     object qrFacturaunitarioCalculado: TBCDField
       FieldName = 'unitarioCalculado'
       Precision = 12
+    end
+    object qrFacturanombreSucursal: TStringField
+      FieldName = 'nombreSucursal'
+      Size = 45
+    end
+    object qrFacturadireccion: TStringField
+      FieldName = 'direccion'
+      Size = 100
+    end
+    object qrFacturalugarSucursal: TStringField
+      FieldName = 'lugarSucursal'
+      Size = 45
+    end
+    object qrFacturaactividadEconomica: TStringField
+      FieldName = 'actividadEconomica'
+      Size = 145
+    end
+    object qrFacturapieFactura: TStringField
+      FieldName = 'pieFactura'
+      Size = 300
     end
   end
   object rdsFactura: TRvDataSetConnection

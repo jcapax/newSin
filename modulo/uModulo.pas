@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, DB, DBTables, ADODB, RpBase, RpSystem, RpDefine, RpRave,
-  RpCon, RpConDS;
+  RpCon, RpConDS, Forms;
 
 type
   Tmodulo = class(TDataModule)
@@ -85,8 +85,17 @@ type
     rdsFactura: TRvDataSetConnection;
     qrFacturacodigoQR: TBlobField;
     qrFacturaunitarioCalculado: TBCDField;
+    qrFacturanombreSucursal: TStringField;
+    qrFacturadireccion: TStringField;
+    qrFacturalugarSucursal: TStringField;
+    qrFacturaactividadEconomica: TStringField;
+    qrFacturapieFactura: TStringField;
+    qSucursallugarSucursal: TStringField;
+    qSucursalactividadEconomica: TStringField;
+    qDosificacionpieFactura: TStringField;
     function aCero(Numero: Currency): integer;
     function Redondear (Numero : Double; PrecisionDec : byte): double;
+    procedure CNXAfterConnect(Sender: TObject);
 
   private
     { Private declarations }
@@ -100,6 +109,13 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tmodulo.CNXAfterConnect(Sender: TObject);
+var path:string;
+begin
+    path:=ExtractFilePath(Application.ExeName);
+    modulo.raveFasin.ProjectFile := path+'\reportes\rFasin.rav';
+end;
 
 function TModulo.Redondear (Numero : Double; PrecisionDec : byte): double;
   function Potencia(Base : Double; Exponente : byte) : Double;
