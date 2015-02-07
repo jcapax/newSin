@@ -58,6 +58,7 @@ object fVenta: TfVenta
   object eRazonSocial: TcxTextEdit
     Left = 176
     Top = 102
+    Properties.CharCase = ecUpperCase
     TabOrder = 2
     Width = 345
   end
@@ -68,6 +69,7 @@ object fVenta: TfVenta
     Height = 24
     NumbersOnly = True
     TabOrder = 1
+    OnExit = eNitExit
     OnKeyPress = eNitKeyPress
   end
   object cxGrid1: TcxGrid
@@ -111,14 +113,17 @@ object fVenta: TfVenta
         end>
       DataController.Summary.FooterSummaryItems = <
         item
+          Format = '#,##0.00'
           Kind = skSum
           Column = cxGrid1DBTableView1iceAlicuota
         end
         item
+          Format = '#,##0.00'
           Kind = skSum
           Column = cxGrid1DBTableView1iceTotal
         end
         item
+          Format = '#,##0.00'
           Kind = skSum
           Column = cxGrid1DBTableView1precioTotal
         end>
@@ -292,21 +297,26 @@ object fVenta: TfVenta
     end
     object cdsDetalleVentaprecioUnitario: TCurrencyField
       FieldName = 'precioUnitario'
+      DisplayFormat = '#,##0.00'
     end
     object cdsDetalleVentacapacidad: TFloatField
       FieldName = 'capacidad'
     end
     object cdsDetalleVentaiceUnitario: TCurrencyField
       FieldName = 'iceUnitario'
+      DisplayFormat = '#,##0.00'
     end
     object cdsDetalleVentaprecioTotal: TCurrencyField
       FieldName = 'precioTotal'
+      DisplayFormat = '#,##0.00'
     end
     object cdsDetalleVentaiceTotal: TCurrencyField
       FieldName = 'iceTotal'
+      DisplayFormat = '#,##0.00'
     end
     object cdsDetalleVentaiceAlicuota: TCurrencyField
       FieldName = 'iceAlicuota'
+      DisplayFormat = '#,##0.00'
     end
   end
   object dsDetalleVenta: TDataSource
@@ -349,7 +359,6 @@ object fVenta: TfVenta
     end
   end
   object qProducto: TADOQuery
-    Active = True
     Connection = modulo.CNX
     CursorType = ctStatic
     Parameters = <
@@ -385,12 +394,15 @@ object fVenta: TfVenta
     object qProductoidSucursal: TIntegerField
       FieldName = 'idSucursal'
     end
-    object qProductoprecioUnitario: TBCDField
+    object qProductoprecioUnitario: TFMTBCDField
       FieldName = 'precioUnitario'
+      currency = True
       Precision = 10
     end
-    object qProductoice: TFloatField
+    object qProductoice: TFMTBCDField
       FieldName = 'ice'
+      Precision = 10
+      Size = 5
     end
   end
   object qDosificacionSucursal: TADOQuery

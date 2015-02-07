@@ -30,7 +30,6 @@ type
     qPrecioProductoid: TAutoIncField;
     qPrecioProductoidProducto: TIntegerField;
     qPrecioProductoidSucursal: TIntegerField;
-    qPrecioProductoprecioUnitario: TBCDField;
     qPrecioProductoestado: TWordField;
     qPrecioProductonombreSucursal: TStringField;
     qPrecioProductonombreProducto: TStringField;
@@ -93,6 +92,7 @@ type
     qSucursallugarSucursal: TStringField;
     qSucursalactividadEconomica: TStringField;
     qDosificacionpieFactura: TStringField;
+    qPrecioProductoprecioUnitario: TFMTBCDField;
     function aCero(Numero: Currency): integer;
     function Redondear (Numero : Double; PrecisionDec : byte): double;
     procedure CNXAfterConnect(Sender: TObject);

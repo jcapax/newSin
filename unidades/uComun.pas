@@ -17,7 +17,7 @@ type
       procedure registrarDetalleVenta(_idVenta, _idProducto, _cantidad: real; _precioUnitario, _iceUnitario, _precioTotal, _iceTotal, _iceAlicuota: Currency);
       procedure registarFactura(_idSucursal: Integer; _especificacion: Byte; _correlativoSucursal: Integer;
                                 _fechaFactura: TDate; _nroFactura, _nroAutorizacion: Int64; _estado: string;
-                                _nit: Int64; _razonSocial: string;
+                                _nit: string; _razonSocial: string;
                                 _importeTotal, _importeIce, _importeExportaciones,
                                 _importeVentastasaCero, _importeSubtotal, _importeRebajas,
                                 _importeBaseDebitoFiscal, _debitoFiscal: Currency;
@@ -33,7 +33,7 @@ uses uModulo;
 
 procedure TAtisbador.registarFactura(_idSucursal: Integer; _especificacion: Byte; _correlativoSucursal: Integer;
                                 _fechaFactura: TDate; _nroFactura, _nroAutorizacion: Int64; _estado: string;
-                                _nit: Int64; _razonSocial: string;
+                                _nit: string; _razonSocial: string;
                                 _importeTotal, _importeIce, _importeExportaciones,
                                 _importeVentastasaCero, _importeSubtotal, _importeRebajas,
                                 _importeBaseDebitoFiscal, _debitoFiscal: Currency;
@@ -63,7 +63,7 @@ begin
   qConsulta.Parameters.ParamByName('nroFactura').Value              := _nroFactura;
   qConsulta.Parameters.ParamByName('nroAutorizacion').Value         := _nroAutorizacion;
   qConsulta.Parameters.ParamByName('estado').Value                  := _estado;
-  qConsulta.Parameters.ParamByName('nit').Value                     := _nit;
+  qConsulta.Parameters.ParamByName('nit').Value                     := StrToInt64(_nit);
   qConsulta.Parameters.ParamByName('razonSocial').Value             := _razonSocial;
   qConsulta.Parameters.ParamByName('importeTotal').Value            := _importeTotal;
   qConsulta.Parameters.ParamByName('importeIce').Value              := _importeIce;

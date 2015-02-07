@@ -13,6 +13,7 @@ object modulo: Tmodulo
     Top = 24
   end
   object qSucursal: TADOQuery
+    Active = True
     Connection = CNX
     CursorType = ctStatic
     Parameters = <>
@@ -49,6 +50,7 @@ object modulo: Tmodulo
     end
   end
   object qProducto: TADOQuery
+    Active = True
     Connection = CNX
     CursorType = ctStatic
     Parameters = <>
@@ -84,6 +86,7 @@ object modulo: Tmodulo
     end
   end
   object qUnidadMedida: TADOQuery
+    Active = True
     Connection = CNX
     CursorType = ctStatic
     Parameters = <>
@@ -105,6 +108,7 @@ object modulo: Tmodulo
     end
   end
   object qPrecioProducto: TADOQuery
+    Active = True
     Connection = CNX
     CursorType = ctStatic
     Parameters = <>
@@ -122,7 +126,7 @@ object modulo: Tmodulo
     object qPrecioProductoidSucursal: TIntegerField
       FieldName = 'idSucursal'
     end
-    object qPrecioProductoprecioUnitario: TBCDField
+    object qPrecioProductoprecioUnitario: TFMTBCDField
       FieldName = 'precioUnitario'
       Precision = 10
     end

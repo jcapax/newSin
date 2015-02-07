@@ -42,12 +42,6 @@ type
     qSucursalestado: TWordField;
     cSucursal: TDBLookupComboBox;
     qProducto: TADOQuery;
-    qProductoid: TAutoIncField;
-    qProductoidProducto: TIntegerField;
-    qProductonombreProducto: TStringField;
-    qProductoidSucursal: TIntegerField;
-    qProductoprecioUnitario: TBCDField;
-    qProductoice: TFloatField;
     cdsDetalleVentanombreProducto: TStringField;
     cxGrid1DBTableView1contador: TcxGridDBColumn;
     cxGrid1DBTableView1cantidad: TcxGridDBColumn;
@@ -99,6 +93,12 @@ type
     qRazonSocialrazonSocial: TStringField;
     Literal1: TLiteral;
     cdsDetalleVentacantidad: TFloatField;
+    qProductoid: TAutoIncField;
+    qProductoidProducto: TIntegerField;
+    qProductonombreProducto: TStringField;
+    qProductoidSucursal: TIntegerField;
+    qProductoprecioUnitario: TFMTBCDField;
+    qProductoice: TFMTBCDField;
     procedure FormShow(Sender: TObject);
     procedure cSucursalClick(Sender: TObject);
     procedure cdsDetalleVentaidProdcutoValidate(Sender: TField);
@@ -116,6 +116,9 @@ type
     procedure eNitKeyPress(Sender: TObject; var Key: Char);
     procedure cxGrid1Enter(Sender: TObject);
     procedure validarRegistros;
+    procedure encontrarCliente;
+    procedure eNitExit(Sender: TObject);
+    procedure listaProductos(_idSucursal: SmallInt);
   private
     { Private declarations }
     _idProducto: Integer;
@@ -141,6 +144,31 @@ implementation
 
 uses uModulo, uComun, uCodigoControl, DelphiZXIngQRCode;
 {$R *.dfm}
+
+procedure tfVenta.listaProductos(_idSucursal: SmallInt);
+//var _sql: string;
+//  qProducto: TADOQuery;
+begin
+//  _sql := 'SELECT p.id, p.idProducto, r.nombreProducto, p.idSucursal, p.precioUnitario, r.ice FROM precioProducto p JOIN producto r ON p.idProducto = r.id WHERE p.estado = 1 AND p.idSucursal = :idSucursal';
+//
+//  qProducto := TADOQuery.Create(self);
+//  qProducto.Connection := modulo.CNX;
+
+end;
+
+procedure TfVenta.encontrarCliente;
+begin
+    qRazonSocial.close;
+    qRazonSocial.Parameters.ParamByName('nit').Value := eNit.Text;
+    qRazonSocial.Open;
+
+    if qRazonSocial.RecordCount <> 0 then
+    begin
+      eRazonSocial.Text := qRazonSocialrazonSocial.Value;
+    end;
+
+    eRazonSocial.SetFocus;
+end;
 
 procedure TfVenta.validarRegistros;
 begin
@@ -383,9 +411,9 @@ begin
 
 end;
 
-procedure TfVenta.eNitKeyPress(Sender: TObject; var Key: Char);
+procedure TfVenta.eNitExit(Sender: TObject);
 begin
-  if key = #13 then
+  if Length(eNit.Text) <> 0  then
     begin
       qRazonSocial.close;
       qRazonSocial.Parameters.ParamByName('nit').Value := eNit.Text;
@@ -398,8 +426,15 @@ begin
 
       eRazonSocial.SetFocus;
     end;
-
 end;
+
+procedure TfVenta.eNitKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = #13 then
+    encontrarCliente;
+end;
+
+
 
 procedure TfVenta.bRegistrarVentaClick(Sender: TObject);
 var
@@ -423,6 +458,7 @@ var
   _importeBaseDebitoFiscal: Currency;
 
   _cadenaQr, _cadenaQr1, _cadenaQr2, _cadenaQr3: string;
+
 begin
   validarRegistros();
 
@@ -435,14 +471,14 @@ begin
 
   // Modulo.parametrosFactura();
 
-  _nit         := StrToInt64(eNit.Text);
+  _nit         :=  StrToInt64(eNit.Text);
   _razonSocial := eRazonSocial.Text;
 
   _idVenta := _comun.nroVenta(_idSucursal);
   _comun.registrarVenta(_idVenta, _idSucursal, 1, '');
   detalleVenta(_idVenta);
 
-  _codigoControl := codControl(inttostr(_nit), _importeTotal);
+  _codigoControl := codControl(eNit.Text, _importeTotal);
   // _importeNeto   := _importeTotal - _importeIce - _iceAlicuotaTotal;
 
   _nroFactura := nroFactura(_nroAutorizacion, _nroInicioFactura,
@@ -467,7 +503,7 @@ begin
   //
 
   _comun.registarFactura(_idSucursal, _especificacion, _correlativoSucursal,
-    _fechaFactura, _nroFactura, _nroAutorizacion, _estado, _nit, _razonSocial,
+    _fechaFactura, _nroFactura, _nroAutorizacion, _estado, eNit.Text, _razonSocial,
     _importeTotal, _importeIce, _importeExportaciones, _importeVentastasaCero,
     _importeSubtotal, _importeRebajas, _importeBaseDebitoFiscal, _debitoFiscal,
     _codigoControl, _idVenta, qDosificacionSucursalfechaLimiteEmision.Value, cSucursal.KeyValue);
@@ -478,7 +514,7 @@ begin
     (_nroAutorizacion) + '|' + DateToStr(_fechaFactura) + '|';
   _cadenaQr2 := CurrToStr(_importeTotal) + '|' + CurrToStr
     (_importeBaseDebitoFiscal) + '|' + _codigoControl + '|';
-  _cadenaQr3 := inttostr(_nit) + '|' + CurrToStr(_importeIce) + '|' + CurrToStr
+  _cadenaQr3 := eNit.Text + '|' + CurrToStr(_importeIce) + '|' + CurrToStr
     (_importeVentastasaCero) + '|' + '0' + '|' + CurrToStr(_importeRebajas);
 
   _cadenaQr := _cadenaQr1 + _cadenaQr2 + _cadenaQr3;
@@ -496,9 +532,11 @@ begin
 end;
 
 procedure TfVenta.cdsDetalleVentaBeforePost(DataSet: TDataSet);
+//var _pUnit: Currency;
 begin
-  cdsDetalleVentaprecioTotal.Value := qProductoprecioUnitario.Value * cdsDetalleVentacantidad.Value;
-  cdsDetalleVentaiceTotal.Value    := cdsDetalleVentacantidad.Value * qProductoice.Value;
+//  _pUnit := qProductoprecioUnitario.Value;
+  cdsDetalleVentaprecioTotal.Value := qProductoprecioUnitario.AsFloat * cdsDetalleVentacantidad.Value;
+  cdsDetalleVentaiceTotal.Value    := cdsDetalleVentacantidad.Value * qProductoice.AsFloat;
   cdsDetalleVentaiceAlicuota.Value := ((cdsDetalleVentaprecioTotal.Value - cdsDetalleVentaiceTotal.Value)* 0.87) * 0.01; ;
 
 end;
@@ -512,8 +550,8 @@ begin
     if qProductoidProducto.Value = cdsDetalleVentaidProdcuto.Value then
     begin
       _idProducto                         := qProductoidProducto.Value;
-      cdsDetalleVentaprecioUnitario.Value := qProductoprecioUnitario.Value;
-      cdsDetalleVentaiceUnitario.Value    := qProductoice.Value;
+      cdsDetalleVentaprecioUnitario.Value := qProductoprecioUnitario.AsFloat;
+      cdsDetalleVentaiceUnitario.Value    := qProductoice.AsFloat;
       Exit;
     end;
     qProducto.Next;
